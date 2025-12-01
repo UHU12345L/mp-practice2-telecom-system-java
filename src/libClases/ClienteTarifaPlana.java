@@ -15,13 +15,15 @@ public class ClienteTarifaPlana extends Cliente{
 	}
 	
 	public ClienteTarifaPlana(String nif, String nom, Fecha fNac, float minutosHablados, String nacionalidad) {
-		super(nif, nom, fNac);
+		super(nif, nom, fNac, Cliente.getFechaPorDefecto());//faltaba el ultimo parametro
 		this.minutosHablados=minutosHablados;
 		this.nacionalidad=nacionalidad;
 	}
 	
-	public ClienteTarifaPlana(Cliente c) {
+	public ClienteTarifaPlana(ClienteTarifaPlana c) {
 		super(c);
+		this.minutosHablados=c.minutosHablados;
+		this.nacionalidad=c.nacionalidad;
 	}
 	
 	public void setMinutos(int min) {
@@ -69,6 +71,11 @@ public class ClienteTarifaPlana extends Cliente{
 	@Override
 	public boolean equals(Object o) {
 		return o instanceof ClienteTarifaPlana &&getNIF().equals(((Cliente)o).getNIF());
+	}
+	
+	@Override
+	public String toString() {
+	    return super.toString() + " " + nacionalidad + " [" + limiteMinutos + " por " + tarifa + "] " + minutosHablados + " --> " + factura();
 	}
 	
 }

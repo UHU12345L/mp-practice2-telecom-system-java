@@ -7,7 +7,7 @@ public class ClienteMovil extends Cliente {
 	
 	public ClienteMovil(String nif, String nom, Fecha fNac, Fecha fAlta, Fecha fPermanencia, float minutosHablados, float precioMinuto) {
 		//public Cliente (String nif, String nom, Fecha fNac, Fecha fAlta)
-		super(nif, nom, fNac, fAlta); //llamar a constructor de Clientepor atributos de padre son private (heredo todo pero: nif, nom, fNac, fAlta)
+		super(nif, nom, fNac, fAlta);
 		this.minutosHablados=minutosHablados;
 		this.precioMinuto=precioMinuto;
 		this.fechaPermanencia=(Fecha)fPermanencia.clone();
@@ -24,11 +24,10 @@ public class ClienteMovil extends Cliente {
 	}
 
 	public ClienteMovil(ClienteMovil c) {
-		super(c); //constructor copia de padre (Cliente)
-		//copiar atributos especificos de la clase
+		super(c);
 		this.minutosHablados=c.minutosHablados;
 		this.precioMinuto=c.precioMinuto;
-		this.fechaPermanencia=(Fecha)fechaPermanencia.clone();
+		this.fechaPermanencia=(Fecha)c.fechaPermanencia.clone();
 	}
 	
 	public void setFPermanencia(Fecha fechaper) {
@@ -68,7 +67,6 @@ public class ClienteMovil extends Cliente {
 	
     @Override
     public boolean equals(Object o) {
-    	//instanceof: si objeto es de clase o subclases
     	return o instanceof ClienteMovil && getNIF().equals(((Cliente)o).getNIF());
     }
 }

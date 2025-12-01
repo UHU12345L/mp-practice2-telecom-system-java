@@ -1,9 +1,46 @@
 package libClases;
 import java.util.Scanner;
 
-//cin:scanner
-//getline(con,str): s.nextline()
-//string a int: Integer.parseInt
+//cout es system.out
+//leer de teclado: 
+	//Scanner s =new Scanner(System.in); es leer de teclado
+	//system.in: entrada de teclado (cin)
+	//s.nextLine();Leer toda la línea hasta Enter (getline)
+	//s.nextInt(); Leer entero (cin >> num)
+	//s.nextFloat(); Leer decimal (cin >> float)
+//convertir cadenas a numeros: Integer.parseInt()
+//@Override sobreescribo método de clase padre o interfaz
+//verificar objeto sea una fecha (o instanceof Fecha)) 
+
+//Separar cadenas:String[] partes = linea.split("/"); 
+//super(c); constructor copia de padre (Cliente), despues copiar atributos especificos de la clase
+
+//C++: ==, !=, length(), substr(), +
+//Java: equals(), equalsIgnoreCase(), length(), substring(), +
+
+//Comparar strings:
+	//str1 == str2 En Java compara REFERENCIAS, no contenido
+	//str1.equals(str2)  Compara contenido (equivale a str1 == str2 en C++)
+	// str1.equalsIgnoreCase(s)  Compara ignorando mayúsculas/minúsculas
+
+//Longitud:str.length() 
+//Herencia:  C++: class Hijo : public Padre, virtual, Java: class Hijo extends Padre, @Override  
+//public final no clases derivadas       
+
+//Verificar tipos: C++: dynamic_cast, typeid. Java: instanceof, getClass()
+	//instanceof: si objeto es de clase o subclases
+
+//hacer casting a fecha: Fecha f=(Fecha) o;
+/*
+Manejo de excepciones:
+try {
+    // código
+} catch(Exception e) {
+    // manejo del error
+}
+*/
+
+
 public final class Fecha implements Cloneable, Proceso {
 	private int dia;
 	private int mes;
@@ -62,21 +99,18 @@ public final class Fecha implements Cloneable, Proceso {
 	}
 	
 	public static Fecha pedirFecha() {
-		//scanner:leer de teclado, system.in: entrada de teclado (cin)
 		Scanner s =new Scanner(System.in);
 		Fecha f=null;
 		boolean valida;
 		
 		do {
 			System.out.print("Introduce la fecha (dd/mm/aa): ");
-			//leer todo hasta enter (getline(con,linea)) y separar por /, devuelve array de strings
 			String[] datos=s.nextLine().split("/");
 			
 			//length() en strings
 			if(datos.length !=3) {
 				valida=false;
 			}else {
-				//convertir cadenas a numeros con Integer.parseInt()
 				int fDia=Integer.parseInt(datos[0]);
 				int fMes=Integer.parseInt(datos[1]);
 				int fAnio=Integer.parseInt(datos[2]);
@@ -144,7 +178,7 @@ public final class Fecha implements Cloneable, Proceso {
 	    return fechaSig;
 	}
 
-	@Override //sobreescribo método de clase padre o interfaz
+	@Override 
 	public Object clone() {
 		Object obj=null;
 		try {
@@ -157,17 +191,15 @@ public final class Fecha implements Cloneable, Proceso {
 	
 	@Override
 	public boolean equals(Object o) {
-		//verificar objeto sea una fecha
 	    if(!(o instanceof Fecha)) 
 	    	return false;
-	    //hacer casting a fecha
 	    Fecha f=(Fecha) o;
-	    return dia==f.dia &&mes==f.mes &&anio==f.anio;
+	    return dia==f.dia && mes==f.mes && anio==f.anio;
 	}
 	
 
 
-public static void main(String[] args) { 
+/*public static void main(String[] args) { 
 	  Fecha f1 = new Fecha(29,2,2001), f2 = new Fecha(f1), f3 = new Fecha(29,2,2004); 
 	  final Fecha f4=new Fecha(05,12,2023);  //es constante la referencia f4 
 	  System.out.println("Fechas: " + f1.toString() + ", "+f2+ ", " +f3+ ", " +f4+ "\n"); 
@@ -178,7 +210,6 @@ public static void main(String[] args) {
 	  f3=Fecha.pedirFecha(); //pide una fecha por teclado 
 	  if (f3.bisiesto() && Fecha.mayor(f2,f1)) 
 	    System.out.print("El " + f3.getAnio() + " fue bisiesto, " + f1 + ", " + f3); 
-} 
+} */
+	
 }
-
-//de cliente atributo fecha de alta cambiar un final porque pone que si se puede modificar

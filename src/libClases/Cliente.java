@@ -5,7 +5,7 @@ public class Cliente implements Cloneable, Proceso {
 	  private final int codCliente;   //codigo único (y fijo) generado por la aplicación 
 	  private String nombre;          //nombre completo del cliente (SI se puede modificar) 
 	  private final Fecha fechaNac;   //fecha nacimiento del cliente (NO se puede cambiar) 
-	  private final Fecha fechaAlta;  //fecha de alta del cliente (SI se puede modificar) 
+	  private Fecha fechaAlta;  //fecha de alta del cliente (SI se puede modificar) 
 	 
 	  private static final Fecha FechaDefecto = new Fecha(01,01,2018);
 	  private static int contadorClientes=1;
@@ -75,12 +75,14 @@ public class Cliente implements Cloneable, Proceso {
 		}
 		
 		@Override
-	    public String toString(){ //devuelve una cadena con la información del cliente
+	    public String toString(){ 
 	        return nif+" "+fechaNac+": "+nombre+" ("+codCliente+" - "+fechaAlta+")";
 	    }
 
 		@Override
 	    public boolean equals(Object o){
-	        return o.getClass() == Cliente.class && nif.equals(((Cliente)o).nif);
+			if(!(o instanceof Cliente)) return false;
+			Cliente c=(Cliente)o;
+	        return this.getClass() == c.getClass() && nif.equals(c.nif);
 	    } 	  
 }
